@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .hot{
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>
+      {{num}}
+    </h1>
+    <button @click="add">+</button>
+    <button @click="jian">-</button>
+    <br>
+    <br>
+    <br>
+    <br>
+    <button @click="getData">获取数据</button>
+    <div class="hot">
+      <div class="item" v-for="item in hot">
+        <img :src="item.img">
+        <h3>{{item.title}}</h3>
+        <p>{{item.author}}</p>
+        <p>{{item.intro}}</p>
+      </div>
+    </div>
+  </div>
+  
+  
+  <script src="./jquery.min.js"></script>
+  <script src="./vue.js"></script>
+  
+  <script>
+    var vm = new Vue({
+      el: "#app",
+      data:{
+        hot:[],
+        num:0
+      },
+      methods: {
+        add(){
+          this.num++
+        },
+        jian(){
+          this.num--
+        },
+        getData(){
+          var _ = this;
+          $.ajax({
+            url:"get.php",
+            success: function(res){
+              var items = $($(res)[29]).find("#hotcontent .item")
+              var data = [];
+              for(var i=0;i<items.length;i++){
+                var obj = {};
+                var item = $(items[i]);
+                var img = item.find("img").attr("src");
+                var title = item.find("dt>a").html()
+                var link = item.find("dt>a").attr("href")
+                var author = item.find("dt>span").html()
+                var intro = item.find("dd").html()
+                obj = {
+                  img,title,link,author,intro
+                }
+                data.push(obj)
+              }
+              
+              _.hot = data;
+            }
+          })
+        }
+      },
+    })
+  </script>
+  
+</body>
+</html>

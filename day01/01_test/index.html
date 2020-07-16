@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="getData()">获取数据</button>
+    <script src="./jquery-1.9.1.min.js"></script>
+    <script>
+        function getData(){
+            $.ajax({
+                url:"./index.php",
+                success:function(res){
+                    console.log(res);
+                    var items = $($(res)[29].find("#hotcontent .item"));
+                    var data = [];
+                    for(var i=0;i<items.length;i++){
+                        var obj = {};
+                        var item = $(items[i]);
+                        var img = item.find('img').attr('src');
+                        var title = item.find('dt>a').html();
+                        var link = item.find('dt>a').attr('href');
+                        var author = item.find('dt>sapn').html();
+                        var intro = item.find('dd').html();
+                        obj = {
+                            img,title,link,author,intro
+                        }
+                        data.push(obj);
+                    }
+                    console.log(data);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
