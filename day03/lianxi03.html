@@ -9,13 +9,25 @@
     <button id="btn1">按钮1</button>
 
     <button id="btn2">按钮2</button>
-    <div id="box"></div>
+    <div id="info"></div>
+    <!-- 引用在线库,不存在跨域问题 -->
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script>
         btn1.onclick =  function(){
-            box.innerHTML = "你好，我叫小明";
+            $.ajax({
+                url:"/xiaoming",
+                success:function(res){
+                    $('#info').html(res);
+                }
+            });
         }
         btn2.onclick =  function(){
-            box.innerHTML = "你好，我叫小红";
+            $.ajax({
+                url:"/xiaohong",
+                success:function(res){
+                    $('#info').html(res);
+                }
+            });
         }
     </script>
 </body>
