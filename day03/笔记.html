@@ -19,11 +19,52 @@
 四、NodeJs的使用
     1) 安装
         安装成功后打开命令窗口输入node -v
+
     2) 运行第一个js(node 01_test.js)
         01_test.js
         注意: node环境下,所有浏览器中的对象都不能使用
         比如alert,window,location
+
     3) 使用NodeJs写一个简单的服务器
         02_server.js
         node 02_server.js在git bash上运行,然后打开浏览器,输入localhost:4000(4000是端口号)回车
         运行结束,在git bash 里按ctrl+C退出,然后可以关闭git bash
+
+    4) 请求对象req和响应对象res
+        03_req.js
+        04_res.js
+
+    5) NodeJs没有根目录
+        05_root.js
+        root.html
+
+练习1 (lianxi01.html,lianxi01.js)
+    1) 表单页面发送请求,服务器接收表单数据
+    2) 启动服务,接收表单传递的数据,并将其处理返回给浏览器
+        你的用户名是: xxxx, 密码是:xxxx
+练习2 (lianxi02_1.html/lianxi02_2.html,lianxi02.js)
+    访问localhost:4000/circle页面显示红色的圆形
+    访问localhost:4000/squ
+    are页面显示蓝色的方形
+    其他地址则显示地址错误
+
+练习3(ajax) (lianxi03.html,lianxi03.js)
+    访问localhost:4000显示页面
+    页面上包含2个按钮,点击第一个按钮,在按钮下方显示  你好，我叫小明
+                     点击第二个按钮,在按钮下方显示  你好,我是小红
+
+练习4 (lianxi04_login.html,lianxi04_welcome.html,lianxi04.js)
+    访问localhost:4000显示登录页面
+    输入用户名和密码后点击登录
+    如果用户名和密码匹配正确,则显示欢迎页面
+        欢饮您,XXXX
+    如果不匹配,则提示,用户名或密码错误
+    或者：
+    告诉用户是用户名错误,还是密码错误
+
+
+MEAN开发
+M Mongo
+E Express koa
+A Angular = vue
+N Node
