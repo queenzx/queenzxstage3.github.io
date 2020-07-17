@@ -15,8 +15,6 @@ var server = http.createServer(function(req,res){
     var query = urlObj.query;
     if(path=="/login"){
         var username = query.username;
-
-         
         var password = query.password;
         fs.readFile("./lianxi04.json",function(err,data){
             if(err){

@@ -1,0 +1,21 @@
+github配置ssh密钥的方法
+安装完git,首先要配置用户名和邮箱
+1)配置用户信息
+    - git config --global user.name "用户名"
+    - git config --global user.email "邮箱"
+2)配置密钥
+    在C盘:user->Administrator下右击git bash
+    1.生成密钥对
+        输入命令
+            ls -a ~/.ssh查看本机有没有密钥
+        创建密钥
+            ssh-keygen -t rsa -C "邮箱地址"
+    注：可以在上面.ssh/目录下右键鼠标git bash here，然后键入以下命令，就会在该目录下自动生成这这两个文件。
+    2.设置远程仓库上的公钥
+    本地仓库连接github
+    git remote(显示origin)
+    git remote remove origin
+    git remote
+    git remote add origin git@github.com:queenzx/testSSH.git(github SSH地址)
+    git push -u origin master
+    Are you sure you want to continue connecting (yes/no)?yes回车

@@ -1,0 +1,76 @@
+第三阶段 NodeJs
+第二天
+fs模块
+    所有的文件系统操作都具有同步和异步的形式
+
+    同步:有先后顺序的执行某些事情
+    异步:相互之间没有先后顺序,没有关联
+
+    在异步方法中,最后一个参数必定是回调函数,回调函数的第一个参数必定是err,如果该方法需要返回数据,则从第二个参数开始
+    
+一、读取文件内容
+    异步方法: 最后参数为回调函数
+    fs.readFile("path",{},function(err,data){})
+
+    同步方法: 没有回调函数,但是有返回值(会抛出异常,导致程序崩盘,一般不建议使用)
+    var data = fs.fs.readFileSync("path",{})
+
+二、创建文件夹
+    <!-- 异步 -->
+    fs.mkdir(path,{recursive},function(err){});
+        1) path 创建文件夹的名称,可以多层级创建"a/b"
+        2) recursive 是否要创建父目录 默认值: false。
+        3) function 回调函数,处理文件是否创建成功操作
+    
+    <!-- 同步 -->
+    fs.mkdirSync(path);
+       
+三、创建文件
+    fs.writeFile(path,data,{flag:"w"},function(err){});
+        1) path 创建文件的名称,文件名或文件描述符
+        (则异步地写入数据到文件（如果文件已存在，则覆盖文件）)
+        2) data 写入文件的数据
+        3) flag 设置数据写入的方式 默认值: 'w'。
+            'w': 打开文件用于写入。 如果文件不存在则创建文件，如果文件存在则覆盖文件。
+            'a': 打开文件用于追加。 如果文件不存在，则创建该文件。
+        3) function 回调函数,写入文件是否创建成功操作
+
+四、删除文件
+    <!-- 异步 -->
+    fs.unlink(path,function(err){});
+        1)path: 路径
+        2)function: 回调函数
+    <!-- 同步 -->
+    fs.unlinkSync(path)
+        1) path:路径
+
+五、读取文件夹内容
+    1)读取文件夹内容
+    fs.readdir(path,{withFileTypes:false},function(err,files){});
+        1)path: 路径
+        2)withFileTypes: 是否显示文件类型,默认是false
+        3)function: 回调函数
+    2)检查文件的存在性
+    fs.stat(path,function(err,stats){});
+        1)path: 路径
+        2)function: 回调函数
+        stats: 是 fs.Stats 对象,fs.Stats 对象提供了关于文件的信息。
+六、删除文件夹
+    fs.rmdir(path,function(err){}) 
+    - 只能删除空文件夹,非空文件夹,官方提供的方法还不稳定,需要自己封装使用
+
+js基本数据类型:
+    String,Number,Boolean,Undefined,Null,复杂的数据类型————Object
+    Object、Array和Function则属于引用类型
+
+练习
+    1)练习1
+        访问localhost:4000/regist?username=zhangsan&password=123
+        服务器端接收请求参数,同时在服务器端的user.json文件中保存该数据,数据格式:
+        [
+            {"username":"xxx","password":"xxx"},
+            {"username":"xxx","password":"xxx"},
+            {"username":"xxx","password":"xxx"}
+        ]
+
+        如果user.json不存在,则创建一个新的文件
