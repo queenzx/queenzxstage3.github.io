@@ -55,13 +55,13 @@ fs.readdir("./",function(err,files){
       }
       fs.stat(files[i],function(err,stats){
         if(stats.isFile()){
-          console.log(files[i]+" is file")
+          console.log(files[i]+" is file");
         }else{
-          console.log(files[i]+" is dir")
+          console.log(files[i]+" is dir");
         }
         i++
         iterate(i)
       });
-    })(0)
+    })(0);
   })
   
