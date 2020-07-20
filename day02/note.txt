@@ -147,5 +147,8 @@
         将远程仓库的master分支上的修改拉取下来
         一般情况下,第一次下载时使用git clone
         以后同步代码就只使用git pull(拉取)和git push(推送)
+        origin:是远程仓库的名字
+        master:是分支名
+                   
         
 
