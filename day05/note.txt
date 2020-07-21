@@ -23,9 +23,12 @@
         使用关键字exports
         exports.属性名/方法名 = 属性名/方法名
         将需要给别人使用的属性或方法暴露出去
+        - 可以多次使用,一个一个暴露出去
 
     4)如何暴露一个对象
         module.exports = 对象
+        - 只能使用一次,一次性暴露出去
+    注: exports和module.exports不能混用,混用,后面的会覆盖前面的
 
     5)如何暴露一个文件夹
         - 狭义上的模块: 一个js文件就是一个模块
@@ -51,7 +54,7 @@
 
             node_modules不需要在当前路径下,可以在直接父级目录下即可
 
-    nodejs事件格式化: npm i silly-datetime
+    nodejs事件格式化: 下载插件(在命令行操作): npm i silly-datetime
 
     使用别人的模块
 
