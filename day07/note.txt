@@ -1,0 +1,67 @@
+第三章 NodeJs
+第五天
+一、Express常用的功能:
+    1. 静态文件伺服功能
+    2. 路由功能
+    3. 模板功能
+    -3) 路由功能 (express_router.js+route->teacher.js/student.js)
+    app.get('/:year/:monthdate/:hour/:newId')
+
+二、中间件
+    1)可以访问reqres对象的函数称为中间件,比如:
+        app.get();      处理get请求
+        app.post();     处理post请求
+        app.use();      处理所有的请求
+    2)功能:
+        处理请求req和响应res对象
+        返回响应给浏览器,结束请求
+        调用下一个中间件(将请求放行,让后续中间件处理)
+    3)get和use的区别 (01_get_use.js+views->test.ejs)
+        -相同点:
+            都能处理get请求
+            都忽略大小写,忽略参数,忽略锚点
+        -不同点:
+            get是精确匹配
+                get('/a') 只能匹配 /a 的请求
+            use是模糊匹配
+                use('/a')  可以匹配所有以/a请求开头的请求
+                可以处理: /a,/a/b,/a/b/r/f/g
+                不可以处理: /ab/b,/b/a
+        app.use('/',function(req,res){}) 可以处理所有的请求
+        简写成
+        app.use(function(req,res){})
+
+    /login ==>跳转到登录页面 ==>get
+    /login ==>发送登录页面 ==>post
+    app.get('/login',function(){跳转到登录页面});
+    app.post('/login',function(){登录登录页面});
+
+    app.use('/tologin',function(){跳转到登录页面});
+    app.use('/login',function(){登录登录页面});
+
+三、end、send、render的区别
+    1. end 
+        - 用于快速结束请求,返回响应,如果有返回的数据,可以作为参数传递回去.
+        - 常用于测试,参数类型为string或者buffer
+        - 如果有中文,则会出现乱码,需要设置消息头
+    2. send
+        - 效果与end相似
+        - 常用于快速结束请求,返回响应
+        - 参数类型: string,buffer,array,json
+        - 如果数据有中文,会自动设置MIME类型,不会出现乱码情况
+    3. render
+        - 渲染返回一个模板视图页面
+        - 一共有3个参数:
+            视图名称,json数据,回调函数(err,html)
+            视图名称会自动从views文件夹中去查找,如果没有回调函数,则直接返回给浏览器
+            如果有回调函数,则将渲染成功的结果赋值给html
+    请求参数的获取:
+        get请求: req.query
+        post请求: 有文件上传 formidable
+                  没有文件上传 app.use(express.urlencoded({extended: true}))
+                  extended:true,返回数据类型是任何类型
+                            false,返回数据是String或Array类型
+    案例:02_post.js+views->form.ejs
+四、npm淘宝镜像
+    1)全局安装淘宝镜像
+        

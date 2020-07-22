@@ -1,7 +1,7 @@
 第三章 NodeJs
 第四天
 一、formidable模块的使用
-    01_fd.js
+    01_fd.js+01.html
 二、视图模板引擎
     1)前端模板引擎: template.js
         <%= 变量 %>
@@ -13,7 +13,7 @@
         npm i ejs
     3)使用ejs模块(02_ejs.js)
 
-练习1:
+练习1:(lianxi01.js+lianxi01.html)
     使用模板引擎访问页面
 
 三、NodeJs框架——Express
@@ -30,21 +30,21 @@
         1. 静态文件伺服功能
         2. 路由功能
         3. 模板功能
-        -1) 模板功能(express_temp.js)
+        -1) 模板功能(express_temp.js+views->show.ejs)
             - 设置模板引擎
                 app.set('view engine','ejs');
                 设置模板引擎后,在渲染视图时,就可以不用再添加后缀名.ejs了
             - 默认情况下,express会从当前路径下的views文件夹下去查找对应的视图模板文件
                 可以设置自己的定义的文件夹
                 app.set('views','视图模板存放路径');
-        -2) 静态文件伺服功能 (express_static.js)
+        -2) 静态文件伺服功能 (express_static.js+views->static.ejs)
             - 因为NodeJs没有根目录,所以在视图中引用静态资源文件时,额外发送的请求会无法正确找到对应的静态资源文件.
             - express提供的静态伺服功能,就提供了一个解决方法: 设置一个根目录,将所有的静态资源文件全部放入该根目录中,需要使用时,直接从该目录中引入即可
                 app.use(express.static('目录));
             设置后,在视图中引用时,可以使用相对路径或绝对路径。
             但是,无论是相对路径还是绝对路径,都是相对于设置的根目录来决定的
 
-练习2:
+练习2: (lianxi02.js+views->lianxi02.ejs)
     使用express启动服务
     访问localhost:4000
     页面展示某个文件夹中的所有图片
