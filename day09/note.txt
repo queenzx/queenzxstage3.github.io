@@ -1,0 +1,203 @@
+第三章 NodeJs
+第七天
+一、MEVN全栈开发
+    M: 数据库 (MongoDB)
+    E: 
+    V: vue
+    NodeJs 不适合大型企业
+    music.wuxie419.xyz/#/
+二、数据库
+    - 关系型数据库
+        1)常用类型
+            oracle mysql sqlserver DB2 Access
+        2)定义
+            关系型数据库，是指采用了关系模型来组织数据的数据库，其以行和列的形式存储数据，以便于用户理解，关系型数据库这一系列的行和列被称为表，一组表组成了数据库。关系模型可以简单理解为二维表格模型，而一个关系型数据库就是由二维表及其之间的关系组成的一个数据组织。
+    - 非关系型数据库 NoSQL
+        1) 全称: Not only SQL
+        2)NoSQL数据库在以下的这几种情况下比较适用
+            1、数据模型比较简单;{}对象
+            2、需要灵活性更强的IT系统;
+            3、对数据库性能要求较高;
+            4、不需要高度的数据一致性;
+            5、对于给定key，比较容易映射复杂值的环境。
+        3)MongoDB服务器端口号:27017
+    - 对比:
+        - 关系型数据库中保存的是表格,表格中有行和列,每一行为一条数据,称为记录,
+          每一列为一个字段, 
+
+        - 非关系型数据库中保存的是集合,集合中保存的是数据,也成为文档
+          保存的数据类型为json格式
+    
+三、MongoDB的使用
+    1)下载安装: https://www.MongoDB.com/
+        下载: MongoDB Community Server 安装服务器
+              MongoDB Compass   安装可视化工具
+        安装: 
+            1. MongoDB Community Server
+                双击运行 next -> accept->next ->complete ->next->取消Install MongoDB compass->next->Install
+            2. MongoDB Compass 直接解压到文件夹
+                安装成功,配置环境 mongodb://localhost:27017
+    2) 安装成功后,需要配置环境变量
+        右击我的电脑-->属性-->高级系统设置-->环境变量-->在用户变量或者系统变量中双击path-->在变量值中,奖光标移动到最后,添加英文状态下的分号,然后将安装的bin路径粘贴进去 C:\Program Files\MongoDB\Server\4.2\bin
+    
+    3) mongodb常用命令
+        -1) 启动数据库
+            *新版本安装成功后自动启动,不需要手动*
+            *如果需要指定数据保存路径,或者自动启动失败,则手动启动*
+            手动启动方式1: 电脑右击-->管理-->服务和应用程序-->服务--MongoDB 自动 
+            手动启动方式2:
+            mongod --dbpath 文件夹路径(文件夹需要是空文件夹)
+            打开命令窗口,输入该命令,当发现出现on port 27017时说明服务启动成功
+            注意: 启动服务的命令窗口不能关闭
+
+        -2) 连接数据库
+            重新打开一个命令窗口,输入命令 mongo
+            注意: mongod和mongo这两个命令是在windows的环境下运行的
+                  而使用mongo命令连接数据库之后,会进入到mongo的环境,此时只能使用mongo的命令
+
+        -3) mongo的命令
+            3.1) 查看当前数据库服务器上有哪些数据库
+                show dbs
+            3.2) 查看当前在哪个数据库中
+                db
+            3.3) 创建/使用某个数据库
+                use 数据库名
+                如果数据库存在,则进入数据库开始使用
+                如果不存在,则创建一个数据库
+                注意: 如果是创建数据库,实际上并不是立刻就创建
+                      只有当真正的插入数据时才会创建
+
+            3.4) 添加数据
+                将json格式的文档(数据)插入到集合中
+                db.集合名.insert(json对象)
+                例: 
+                    db.stu.insert({id:1,name:"张三",age:20});
+                    db.stu.insert({id:2,name:"李四"});
+                    db.stu.insert({id:3,name:"王五",gender:"男"});
+                    db.stu.insert({id:4,name:"老王",age:20,gender:"男"});
+            
+            3.5) 查看当前数据库中有哪些集合
+                show collections
+            
+            3.6) 查询某个集合中的数据
+                db.集合名.find();
+                查询数据库中某个集合里面所有的数据
+                db.col.find({})
+                小括号中的{}为查询的条件,空对象表示无条件查询,也就是查询所有的数据,可以省略不写
+                查询年龄为20的人的信息
+                db.stu.find({age:20})
+
+            3.7) 删除数据
+                db.col.remove({})
+                根据给定的条件删除集合中某些数据
+                如果参数为{},表示无条件删除所有的数据,不能省略
+                删除年龄为20的数据
+                db.stu.remove({age:20})     批量删除
+            
+            3.8) 修改数据
+                db.col.update({修改的条件},{修改的数据})
+                将id为3的性别修改为女
+                db.stu.update({id:3},{gender:"女"});
+                注意:
+                    修改的内容如果直接写数据,则会将原来的数据给全部替换
+                    如果要修改某个属性的值,则必须要添加一个$set属性
+                    db.stu.update({id:2},{$set:{name:"lisi"}})
+                将age为20的人,修改为21岁
+                db.stu.update({age:20},{$set:{age:21}})
+                只会修改第一个匹配到的数据
+                如果要批量修改,则添加第三个参数
+                db.stu.update({age:20},{$set:{age:21}},{multi:true})
+
+            3.9) 删除某个集合
+                db.col.drop()
+
+            3.10) 删除某个数据库
+                db.dropDatabase()
+                删除当前所在的数据库
+                删除成功后,输入db查询当前所在的数据库,显示的依然是被删除数据库的名称
+                相当于刚连接数据库use之后,还没有向数据库中添加数据的状态
+        =======================================================
+        练习
+            从连接数据库开始
+            1) 连接数据库,查看当前服务器上有哪些数据库
+            2) 进入到web数据库,查看当前数据库中有哪些集合
+            3) 向集合中添加4条数据
+                db.user.insert({username:"test1",password:"123",age:10,gender:"M"})
+                db.user.insert({username:"test2",password:"abc",age:12,gender:"F"});
+                db.user.insert({username:"test3",password:"123abc",age:10,gender:"F"});
+                db.user.insert({username:"test4",password:"qqq",age:13,gender:"M"});
+            4) 查看user集合中的所有数据
+            5) 查看年龄为10岁的所有数据
+            6) 删除test4的数据
+            7) 将test1的密码修改为"aaa"
+            8) 将gender为F的人的性别修改为女
+        ==================================================
+        -4) 从外部导入数据
+            mongoimport 命令 该命令也是在Windows环境下执行的
+            mongoimport -d 数据库名称 -c 集合名称 json文件路径
+            mongoimport -d db -c col files
+            其中db表示数据库名称
+                col表示集合名称
+                files表示json文件的路径
+            
+            如果导入时,数据库不存在,则自动创建对应名称的数据库和集合
+    4) MongoDB的几种条件
+        -1) 相等关系
+            $eq : equal
+            查询年龄为20岁的信息
+            db.col.find({age:20})
+            db.col.find({age:{$eq:20}})
+        -2) 大于/大于等于
+            $gt : greater than
+            $gte : greater than or equal
+            查询年龄大于20岁的信息
+            db.col.find({age:{$gt:20}})
+        
+        -3) 小于/小于等于
+            $lt : less than
+            $lte : less than or equal
+            查询年龄大于20岁的信息
+            db.col.find({age:{$lt:20}})
+        
+        -4) 不相等
+            $ne : not equal
+            查询年龄不等于20岁的信息
+            db.col.find({age:{$ne:20}})
+
+    5) 逻辑关系
+        -1) 与
+            $and 并且
+            查询年龄小于20岁,并且性别是女的学生信息
+            db.col.find({age:{$lt:20},gender:"F"})
+            数组中的条件必须全部满足
+            {$and:[{age:{$lt:20}},{gender:"F"}]}
+
+        -2) 或
+            $or 或者
+            数组中的条件只要满足其中一个即可
+            {$or: [{age:{$lt:20}},{gender:"F"}]}
+
+        -3) 非
+            $not 取反
+            年龄为20的不要
+            db.col.find({age:{$not:{$eq:20}}})
+
+        -4) 既不也不
+            $nor
+            {$nor:[{},{},...]}
+
+安装:
+npm i mongodb
+
+案例:(testmongo.js)
+    1.增:
+        {
+            name: '王磊',
+            age: 30,
+            likes: [ '爬山', '烧烤' ],
+            score: { html: '78', css: '69', js: '80' }
+        } 
+
+    2. 删: 姓名为赵六的数据
+
+    3. 改: 把张三的年龄修改为35岁
