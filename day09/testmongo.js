@@ -27,6 +27,7 @@ MongoClient.connect(url,opt,function(err,client){
                 likes: [ '爬山', '烧烤' ],
                 score: { html: '78', css: '69', js: '80' }
             };
+    // 向集合中添加一条数据
     col.insertOne(obj,function(err,result){
         if(err){
             console.log(err);
@@ -60,13 +61,11 @@ MongoClient.connect(url,opt,function(err,client){
     col.find().toArray(function(err,docs){
         if(err){
             console.log(err);
+            client.close();
             return ;
         }
         console.log(docs);
         // 关闭连接
         client.close();
     });
-
-
-
 })

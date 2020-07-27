@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <script src="../jquery-1.9.1.min.js"></script>
+</head>
+<body>
+    <form>
+        <p>用户名: <input type="text" name="username"></p> 
+        <p>密&nbsp;码: <input type="password"" name="password"></p> 
+        <button id="btn1">登录</button>
+    </form>
+    <br>
+    <button id="btn2">注册</button>
+    <script>
+        $("#btn2").on('click',function(){
+            location.href = "/register"; 
+        });
+    </script>
+</body>
+</html>
