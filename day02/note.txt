@@ -2,7 +2,14 @@
 第二天
 一、调节vscode的终端
     改成git bash Here
+    方法1:
     ctrl+` -> 默认是window的终端,垃圾箱是终止终端,1:md改为选择默认Shell,出现弹框,选择git bash Here 等待结束,垃圾箱终止终端,ctrl+`重新启动终端
+    方法2:
+    设置->功能->终端->Integrated › Automation Shell: Windows->在setting.json中编辑
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+    改为:
+    "terminal.integrated.shell.windows": "电脑安装git的路径(D:\\Program Files\\Git\\bin\\bash.exe)",
+
 二、git命令:
     1) 查看提交信息
         git log
