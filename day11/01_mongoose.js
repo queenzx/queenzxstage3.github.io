@@ -71,12 +71,13 @@ var u4 = {
     isMarried: false,
     birth: new Date()
 } */
+// 插入一条
 /* var o = new User(u);
 o.save(function(err,doc){
     console.log(err);
     console.log(doc);
 }); */
-
+// 插入多条
 /* User.insertMany([u,u2,u3,u4],function(err,res){
     console.log(err);
     console.log(res);
