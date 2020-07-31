@@ -14,9 +14,14 @@
         -7) 用户可以删除或修改或禁用cookie
         安装cookie-parser:
         npm i cookie-parser
-    案例1:
+        API:
+            var cookieParser = require('cookie-parser');
+            // cookieParser()的参数:如果不适用signed cookie,参数可以省略不写
+                app.use(cookieParser());
+        示例:01_cookie.js
+    案例1:(lianxi01.js)
         使用cookie实现永久登录
-    案例2:
+    案例2:(lianxi02.js+views)
         localhost:4000
         判断有没有登录过
             如果有登录,则显示: 欢迎你: XXXX
@@ -33,3 +38,11 @@
             不重复,保存进数据库,同时,记录登录状态,页面显示 注册成功,欢迎你:XXXX
 
     2)session机制
+        为了解决cookie不安全以及不能大量存储数据的问题
+        ** session的设置与获取全都是由request完成的
+        express-session机制
+        安装:
+            npm i express-session
+        API:
+        var session = require('express-session')
+        示例: 02_session.js
