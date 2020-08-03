@@ -21,6 +21,4 @@ router.get("/ABC/",function(req,res){
 
 
 
-
-
 module.exports=router;

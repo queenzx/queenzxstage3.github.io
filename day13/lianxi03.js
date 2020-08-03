@@ -20,7 +20,7 @@ app.get('/',function(req,res){
     }
     // 找到数据,说明登录了
     res.send('欢迎你'+username);
-});
+}); 
 
 app.get('/login',function(req,res){
     var username = req.query.username;

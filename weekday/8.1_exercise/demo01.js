@@ -7,10 +7,16 @@ mergeParams:true  加了这个可以拿到父级的参数(参数名字一样的�
 */
 
 var express=require("express");
+// var router=require("./01_router_1.js");
 var router=require("./01_router_2.js");
 
 var app=express();
 app.listen(4000);
 
-// 处理路由
-app.use("/test/:name1",router);
+// 处理路由  /test/xxx/???
+// 匹配以/test开头的请求
+//app.use("/test",router);//和01_router_1.js使用 
+ 
+
+// app.use("/test/:name",router);//和01_router_2.js使用
+app.use("/test/:name1",router);//和01_router_2.js使用
