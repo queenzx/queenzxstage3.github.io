@@ -24,3 +24,7 @@ message案例
         cnpm i ejs -S
         cnpm i mongoose -S
         cnpm i silly-datetime -S
+        补充安装
+        cnpm i -S express-session
+        cnpm i -S formidable
+        cnpm i -S gm
