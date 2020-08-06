@@ -1,13 +1,21 @@
 {
     // 1. 定义一个方法,根据传入的参数,计算得出参数的总和(使用扩展运算符)
     let sum=(...a)=>{
-        let S = 0;
+        let s = 0;
         for(let i=0;i<a.length;i++){
-            S += Number(a[i]);
+            s += Number(a[i]);
         }
-        return S;
+        return s;
     }
     console.log(sum(1,2,3,4));
+}
+// 面试题:封装console.log
+{
+    // 封装console.log
+    let log = (...a)=>{
+        console.log(...a);
+    }
+    console.log('aaa%sbbb','NAME');
 }
 
 {
@@ -27,10 +35,17 @@
             }
         }
     };
-    let {status,data,data:[{id,msg}],user,user:{name,score,score:{math,chinese}}} = obj;
+    /* let {status,data,user} = obj;
+    let [o] = data;
+    let {id,msg} = o;
+    let {name,score} = user;
+    let { math,chinese } = score; */
+
+    let {status,data,data:[o],data:[{id,msg}],user,user:{name,score,score:{math,chinese}}} = obj;
     console.log(data);
     console.log(user);
     console.log(score);
+    console.log(o);
     console.log(status,id,msg,name,math,chinese);
     
 }
@@ -45,6 +60,7 @@
             td <%= name %>
             td <%= age %> */
     
+    let {name,age} = {name:'jim',age:23};
     let str = `
     <table>
         <tr>
@@ -52,8 +68,8 @@
             <td>年龄</td>
         </tr>
         <tr>
-            <td><%= name %></td>
-            <td><%= age %></td>
+            <td><%= ${name} %></td>
+            <td><%= ${age} %></td>
         </tr>
     </table>`
     console.log(str);
