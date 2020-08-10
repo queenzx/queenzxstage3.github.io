@@ -147,15 +147,40 @@
 补充:   从github上下载代码
     1) clone--> download Zip
     2) git clone命令(建议第一次下载的时候使用)
-        git clone 远程仓库地址
-        git clone https://github.com/shen111123/mini.git
+        git clone 远程仓库地址 文件夹名称(自定义)
+        git clone https://github.com/shen111123/mini.git test
         该命令会将指定远程仓库完整的克隆下来,包括历史提交信息,而且还会自动添加远程关联
+        -  克隆指定分支名远程仓库
+        git clone -b 分支名 远程仓库地址
     3) git pull origin master
         将远程仓库的master分支上的修改拉取下来
         一般情况下,第一次下载时使用git clone
         以后同步代码就只使用git pull(拉取)和git push(推送)
         origin:是远程仓库的名字
         master:是分支名
+    同一个本地仓库不同分支,上传到同一个远程仓库不同分支
+        1)先复制一个分支
+            git branch mongooseViews
+        2)切换分支
+            git checkout mongooseViews
+        3)推送到githubs
+            git status
+            git remote(photo)
+            git push -u photo mongooseversion(-u表示第一次推送)
+            拉取
+            git pull git@github.com:queenzx/photo.github.io.git mongooseversion
+    同一个远程仓库不同分支,拉取到本地仓库
+        1) git clone 远程仓库地址 文件夹名称(自定义)
+            git clone git@github.com:queenzx/photo.github.io.git photo
+        2) 切换到photo仓库
+            cd photo
+        3) 查看分支  git branch
+        4) 找出所有分支  git branch -r 或者  git branch -a
+        5) 切换到其他分支  git checkout mongooseversion
+    本地不同仓库,上传到远程仓库其他分支名
+    git push git@github.com:queenzx/test.git master:mongooseversion
+                远程仓库地址                   现分支名:\远程仓库分支名
+
                    
         
 
