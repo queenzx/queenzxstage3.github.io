@@ -180,6 +180,14 @@
     本地不同仓库,上传到远程仓库其他分支名
     git push git@github.com:queenzx/test.git master:mongooseversion
                 远程仓库地址                   现分支名:\远程仓库分支名
+    新建本地仓库与远程仓库的连接
+    1)添加远程关联
+        git remote add origin git@github.com:queenzx/miniprogram.git
+    2)暂存
+        git add -A 提交
+        git commit -a 暂存所有
+    3)暂存之后推送到远程仓库
+        git push -u origin master
 
                    
         
