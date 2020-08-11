@@ -47,6 +47,9 @@
                     |-- Pipe.js     水管的基类
                     |-- UpPipe.js   上边的水管
                     |-- DownPipe.js 下边的水管
-ctx.drawImage(img,x,y,w,h,dx,dy,dw,dh);         
+ctx.drawImage(img,x,y,w,h,dx,dy,dw,dh);    
+
+安装模块:websocket
+npm i websocket
 
 
