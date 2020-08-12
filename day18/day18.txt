@@ -52,4 +52,5 @@ ctx.drawImage(img,x,y,w,h,dx,dy,dw,dh);
 安装模块:websocket
 npm i websocket
 
-
+安装模块: ws
+npm i ws
