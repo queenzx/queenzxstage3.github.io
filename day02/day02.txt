@@ -189,6 +189,16 @@
     3)暂存之后推送到远程仓库
         git push -u origin master
 
+    
+从同一个本地仓库关联推送到不同远程仓库工具
+    例:从本地仓库分别推送到github和gitee
+    1) 先初始化本地仓库,然后提交
+    2) 分别建立关联
+        github:   git remote add github git@github.com:queenzx/qqmusic.git(关联)
+                  git push -u github master(推送)
+        gitee:    git remote add gitee git@gitee.com:zhao-xue/qqmusic.git(关联)
+                  git push -u gitee master(推送)
+
                    
         
 
